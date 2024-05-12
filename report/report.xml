@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <template id="report_saleorder_customized" inherit_id="sale.report_saleorder_document">
+            <xpath expr="//div[@id='informations']" position="replace">
+                <div t-if="doc.client_order_ref" class="col-auto col-3 mw-100 mb-2">
+                    <strong>Your Reference:</strong>
+                    <p class="m-0" t-field="doc.client_order_ref"/>
+                </div>
+                <div t-if="doc.date_order and doc.state not in ['draft','sent']" class="col-auto col-3 mw-100 mb-2">
+                    <strong>Order Date:</strong>
+                    <p class="m-0" t-field="doc.date_order"/>
+                </div>
+                <div t-if="doc.date_order and doc.state in ['draft','sent']" class="col-auto col-3 mw-100 mb-2">
+                    <strong>Quotation Date:</strong>
+                    <p class="m-0" t-field="doc.date_order" t-options='{"widget": "date"}'/>
+                </div>
+                <div t-if="doc.validity_date and doc.state in ['draft', 'sent']" class="col-auto col-3 mw-100 mb-2"
+                     name="expiration_date">
+                    <strong>Expiration:</strong>
+                    <p class="m-0" t-field="doc.validity_date"/>
+                </div>
+                    <!--<div t-if="doc.user_id.name" class="col-auto col-3 mw-100 mb-2">
+                        <strong>Salesperson:</strong>
+                        <p class="m-0" t-field="doc.user_id"/>
+                    </div>-->
+            </xpath>
+
+        </template>
+
+        <template id="report_assets_common" name="Technical Service Assets Reports"
+                  inherit_id="web.report_assets_common">
+            <xpath expr="//link[last()]" position="after">
+                <link rel="stylesheet" href="/wt_documents/static/src/css/style.css"/>
+            </xpath>
+        </template>
+        <template id="wide_documents_temp">
+            <t t-call="web.html_container">
+
+                <t t-foreach="docs" t-as="o">
+                    <t t-call="wt_documents.external_layout_invoice">
+                        <div class="header Traditional-Arabic">
+                            <div dir="rtl">
+                                <table width="100%" style="border:none">
+                                    <tr>
+                                        <td rowspan="3" width="70%" style="vertical-align:middle">
+                                            <div class="text-center"
+                                                 style="font-family:Calibri;height:100px; width:100%;">
+                                                <img t-if="o.document_config_id.header"
+                                                     t-att-src="image_data_uri(o.document_config_id.header)"
+                                                     style="width:100%;"
+                                                     height="100%"/>
+                                            </div>
+                                        </td>
+                                        <td dir="rtl" style="text-align:right;padding-right:20px;" width="30%">
+                                            <span style="font-weight:bold;font-size:20px">الرقم:</span>
+                                            <span t-raw="o.name"/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td dir="rtl" style="text-align:right;padding-right:20px">
+                                            <span style="font-weight:bold;font-size:20px">الموضوع:</span>
+                                            <span t-raw="o.subject"/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td dir="rtl" style="text-align:right;padding-right:20px">
+                                            <span style="font-weight:bold;font-size:20px">التاريخ:</span>
+                                            <span dir="ltr" t-raw="o.date.strftime('%Y-%b-%d')"/>
+                                            <br/>
+                                            <span dir="rtl" t-raw="o.date_hijri"/>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="page Traditional-Arabic">
+                            <span dir="rtl" t-raw="o.body"/>
+                            <table dir="rtl" style="border:none;margin-top:80px">
+                                <tr>
+                                    <th width="70%" style="text-align:right"></th>
+                                    <th width="30%" style="text-align:right">
+                                        <t t-if="o.state == 'confirm'">
+                                            <span t-if="o.digital_signature" dir="rtl">التوقيع:
+                                                <img t-att-src="'data:image/png;base64,%s' % to_text(o.digital_signature)"
+                                                     style="width:300px;"
+                                                     height="100px"/>
+                                            </span>
+                                        </t>
+                                    </th>
+                                </tr>
+                                <tr>
+                                    <th width="70%" style="text-align:right"></th>
+                                    <th width="30%" style="text-align:center">
+
+
+                                    </th>
+                                </tr>
+                            </table>
+                            <!--<div style="width:100px;height:100px;float:left;">
+                                <span t-field="o.qr_image" t-options="{'widget': 'image'}"/>
+                            </div>-->
+                        </div>
+                        <div class="footer Traditional-Arabic">
+                            <table dir="rtl" width="100%" style="border:none">
+                                <tr>
+                                    <td rowspan="3" width="80%" style="vertical-align:middle">
+                                        <div class="text-center" style="font-family:Calibri;height:100px; width:100%;">
+                                            <img t-if="o.document_config_id.footer"
+                                                 t-att-src="image_data_uri(o.document_config_id.footer)"
+                                                 style="width:100%;"
+                                                 height="100%"/>
+                                        </div>
+                                    </td>
+                                    <td rowspan="3" dir="rtl" style="text-align:center;" width="20%">
+                                        <t t-if="o.state == 'confirm'">
+                                            <t t-set="report_info" t-value="xmlid" invisible="1"/>
+                                            <img t-if="o._get_api_code(report_info)"
+                                                 t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s&amp;humanreadable=1'% ('QR', o._get_api_code(report_info) , 100, 100)"
+                                                 alt="Qrcode"/>
+                                        </t>
+                                    </td>
+                                </tr>
+
+                            </table>
+
+                        </div>
+                    </t>
+                </t>
+            </t>
+        </template>
+        <template id="wide_documents_qr_temp">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="o">
+                    <t t-call="wt_documents.external_layout_invoice">
+                        <div class="header Traditional-Arabic">
+                            <div dir="rtl">
+                                <table width="100%" style="border:none">
+                                    <tr>
+                                        <td rowspan="3" width="70%" style="vertical-align:middle">
+                                            <div class="text-center"
+                                                 style="font-family:Calibri;height:100px; width:100%;">
+                                                <img t-if="o.document_config_id.header"
+                                                     t-att-src="image_data_uri(o.document_config_id.header)"
+                                                     style="width:100%;"
+                                                     height="100%"/>
+                                            </div>
+                                        </td>
+                                        <td dir="rtl" style="text-align:right;padding-right:20px;" width="30%">
+                                            <span style="font-weight:bold;font-size:20px">الرقم:</span>
+                                            <span t-raw="o.name"/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td dir="rtl" style="text-align:right;padding-right:20px">
+                                            <span style="font-weight:bold;font-size:20px">الموضوع:</span>
+                                            <span t-raw="o.subject"/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td dir="rtl" style="text-align:right;padding-right:20px">
+                                            <span style="font-weight:bold;font-size:20px">التاريخ:</span>
+                                            <span dir="ltr" t-raw="o.date.strftime('%Y-%b-%d')"/>
+                                            <br/>
+                                            <span dir="rtl" t-raw="o.date_hijri"/>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="page Traditional-Arabic">
+                            <table width="100%">
+                                <tr width="100%" style="line-height:50px;">
+                                    <th style="text-align:center;vertical-align:middle;">
+                                        <div>
+                                            <t t-if="o.state == 'confirm'">
+                                                <img t-if="o.qr_code"
+                                                     style="margin:auto;padding:20px;padding-top:15px;padding-left:40px"
+                                                     t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s'%('QR', o.qr_code, 160, 160)"/>
+                                            </t>
+                                        </div>
+                                    </th>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="footer Traditional-Arabic">
+                            <table dir="rtl" width="100%" style="border:none">
+                                <tr>
+                                    <td rowspan="3" width="80%" style="vertical-align:middle">
+                                        <div class="text-center" style="font-family:Calibri;height:100px; width:100%;">
+                                            <img t-if="o.document_config_id.footer"
+                                                 t-att-src="image_data_uri(o.document_config_id.footer)"
+                                                 style="width:100%;"
+                                                 height="100%"/>
+                                        </div>
+                                    </td>
+                                    <td rowspan="3" dir="rtl" style="text-align:center;" width="20%">
+                                        <t t-if="o.state == 'confirm'">
+                                            <img t-if="o.qr_code"
+                                                 style="margin:auto;padding:20px;padding-top:15px;padding-left:40px"
+                                                 t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s'%('QR', o.qr_code, 100, 100)"/>
+                                        </t>
+                                    </td>
+                                </tr>
+
+                            </table>
+
+                        </div>
+                    </t>
+                </t>
+            </t>
+        </template>
+
+
+        <template id="wt_documents.external_layout_invoice">
+            <div class="article o_report_layout_standard" t-att-data-oe-model="o and o._name"
+                 t-att-data-oe-id="o and o.id"
+                 t-att-data-oe-lang="o and o.env.context.get('lang')">
+                <t t-set="colclass" t-value="('col-md-5' if report_type == 'html' else 'col-5') + ' ml-auto'"/>
+                <t t-if="address">
+                    <div class="address row">
+                        <t t-if="information_block">
+                            <t t-set="colclass" t-value="'col-5 offset-1'"/>
+                            <div name="information_block" class="col-6">
+                                <t t-raw="information_block"/>
+                            </div>
+                        </t>
+                        <div name="address" t-att-class="colclass">
+                            <t t-raw="address"/>
+                        </div>
+                    </div>
+                </t>
+                <t t-raw="0"/>
+            </div>
+        </template>
+        <template id="external_layout_header_invoice">
+            <div class="header">
+                <div class="text-center" style="font-family:Calibri;height:100px; width:100%;">
+                    <img t-if="o.company_id.header" t-att-src="image_data_uri(o.company_id.header)" style="width:100%;"
+                         height="100%"/>
+                </div>
+            </div>
+        </template>
+        <template id="external_layout_footer_invoice">
+            <div class="footer">
+                <div class="text-center" style="font-family:Calibri;height:100px; width:100%;">
+                    <img t-if="o.company_id.footer" t-att-src="image_data_uri(o.company_id.footer)" style="width:100%;"
+                         height="100%"/>
+                </div>
+            </div>
+        </template>
+
+
+        <record id="wide_documents_report" model="ir.actions.report">
+            <field name="name">طباعة الخطاب</field>
+            <field name="model">wide.documents</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">wt_documents.wide_documents_temp</field>
+            <field name="report_file">Document</field>
+            <field name="binding_model_id" ref="model_wide_documents"/>
+            <field name="print_report_name">'%s/%s/%s' % (object.subject,object.name,object.date_hijri)</field>
+            <field name="binding_type">report</field>
+        </record>
+        <record id="wide_documents_qr" model="ir.actions.report">
+            <field name="name">طباعة QR</field>
+            <field name="model">wide.documents</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">wt_documents.wide_documents_qr_temp</field>
+            <field name="report_file">Document</field>
+            <field name="binding_model_id" ref="model_wide_documents"/>
+            <field name="print_report_name">'%s/%s/%s QR Code' % (object.subject,object.name,object.date_hijri)</field>
+            <field name="binding_type">report</field>
+        </record>
+    </data>
+</odoo>

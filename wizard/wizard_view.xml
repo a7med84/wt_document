@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="send_document_wizard_form" model="ir.ui.view">
+            <field name="name">send.document.wizard.form</field>
+            <field name="model">send.document</field>
+            <field name="arch" type="xml">
+                <form string="Send Document To Customer">
+                        <group col="4">
+                            <field name="partner_id" widget="many2many_tags"/>
+                            <field name="document_id" invisible="1" readonly="1"/>
+                        </group>
+                    <footer>
+                        <button name="send_email_with_attachment" string="إرسال" type="object" class="btn-primary"/>
+                        <button string="إلغاء" class="btn-secondary" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_send_document" model="ir.actions.act_window">
+            <field name="name">إرسال الخطاب</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">send.document</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="send_document_wizard_form"/>
+            <field name="target">new</field>
+        </record>
+
+
+
+        <record id="confirm_document_wizard_form" model="ir.ui.view">
+            <field name="name">send.document.wizard.form</field>
+            <field name="model">confirm.document</field>
+            <field name="arch" type="xml">
+                <form string="Send Document To Customer">
+                    <h1>هل أنت متأكد من تصديق الخطاب</h1>
+                    <footer>
+                        <button name="confirm_document" string="تأكيد" type="object" class="btn-primary"/>
+                        <button string="إلغاء" class="btn-secondary" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_confirm_document" model="ir.actions.act_window">
+            <field name="name">تأكيد الخطاب</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">confirm.document</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="confirm_document_wizard_form"/>
+            <field name="target">new</field>
+        </record>
+    </data>
+</odoo>

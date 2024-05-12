@@ -1,0 +1,611 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* wt_documents
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0+e-20220411\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-10-06 10:05+0000\n"
+"PO-Revision-Date: 2022-10-06 10:05+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: wt_documents
+#: model:ir.actions.report,print_report_name:wt_documents.wide_documents_qr
+msgid "'%s/%s/%s QR Code' % (object.subject,object.name,object.date_hijri)"
+msgstr ""
+
+#. module: wt_documents
+#: model:ir.actions.report,print_report_name:wt_documents.wide_documents_report
+msgid "'%s/%s/%s' % (object.subject,object.name,object.date_hijri)"
+msgstr ""
+
+#. module: wt_documents
+#: model_terms:ir.ui.view,arch_db:wt_documents.wide_documents_qr_temp
+#: model_terms:ir.ui.view,arch_db:wt_documents.wide_documents_temp
+msgid "<span style=\"font-weight:bold;font-size:20px\">التاريخ:</span>"
+msgstr ""
+
+#. module: wt_documents
+#: model_terms:ir.ui.view,arch_db:wt_documents.wide_documents_qr_temp
+#: model_terms:ir.ui.view,arch_db:wt_documents.wide_documents_temp
+msgid "<span style=\"font-weight:bold;font-size:20px\">الرقم:</span>"
+msgstr ""
+
+#. module: wt_documents
+#: model_terms:ir.ui.view,arch_db:wt_documents.wide_documents_qr_temp
+#: model_terms:ir.ui.view,arch_db:wt_documents.wide_documents_temp
+msgid "<span style=\"font-weight:bold;font-size:20px\">الموضوع:</span>"
+msgstr ""
+
+#. module: wt_documents
+#: model:ir.model,name:wt_documents.model_ir_attachment
+msgid "Attachment"
+msgstr "مرفق"
+
+#. module: wt_documents
+#: model:ir.model,name:wt_documents.model_confirm_document
+msgid "Confirm Document"
+msgstr ""
+
+#. module: wt_documents
+#: model:ir.model,name:wt_documents.model_res_country_state
+msgid "Country state"
+msgstr "الولاية أو المحافظة"
+
+#. module: wt_documents
+#: model:ir.model.fields,field_description:wt_documents.field_confirm_document__create_uid
+#: model:ir.model.fields,field_description:wt_documents.field_document_config__create_uid
+#: model:ir.model.fields,field_description:wt_documents.field_send_document__create_uid
+#: model:ir.model.fields,field_description:wt_documents.field_wide_department__create_uid
+#: model:ir.model.fields,field_description:wt_documents.field_wide_documents__create_uid
+#: model:ir.model.fields,field_description:wt_documents.field_wide_documents_confirmed__create_uid
+#: model:ir.model.fields,field_description:wt_documents.field_wide_documents_received__create_uid
+msgid "Created by"
+msgstr "أنشي بواسطة"
+
+#. module: wt_documents
+#: model:ir.model.fields,field_description:wt_documents.field_confirm_document__create_date
+#: model:ir.model.fields,field_description:wt_documents.field_document_config__create_date
+#: model:ir.model.fields,field_description:wt_documents.field_send_document__create_date
+#: model:ir.model.fields,field_description:wt_documents.field_wide_department__create_date
+#: model:ir.model.fields,field_description:wt_documents.field_wide_documents__create_date
+#: model:ir.model.fields,field_description:wt_documents.field_wide_documents_confirmed__create_date
+#: model:ir.model.fields,field_description:wt_documents.field_wide_documents_received__create_date
+msgid "Created on"
+msgstr "أنشي بتاريخ"
+
+#. module: wt_documents
+#: model:ir.model.fields,field_description:wt_documents.field_confirm_document__display_name
+#: model:ir.model.fields,field_description:wt_documents.field_document_config__display_name
+#: model:ir.model.fields,field_description:wt_documents.field_ir_attachment__display_name
+#: model:ir.model.fields,field_description:wt_documents.field_res_country_state__display_name
+#: model:ir.model.fields,field_description:wt_documents.field_send_document__display_name
+#: model:ir.model.fields,field_description:wt_documents.field_wide_department__display_name
+#: model:ir.model.fields,field_description:wt_documents.field_wide_documents__display_name
+#: model:ir.model.fields,field_description:wt_documents.field_wide_documents_confirmed__display_name
+#: model:ir.model.fields,field_description:wt_documents.field_wide_documents_received__display_name
+msgid "Display Name"
+msgstr "الاسم المعروض"
+
+#. module: wt_documents
+#: model:ir.model,name:wt_documents.model_document_config
+msgid "DocumentConfig"
+msgstr ""
+
+#. module: wt_documents
+#: model:ir.model.fields,field_description:wt_documents.field_wide_documents__filename
+#: model:ir.model.fields,field_description:wt_documents.field_wide_documents_confirmed__filename
+#: model:ir.model.fields,field_description:wt_documents.field_wide_documents_received__filename
+msgid "File Name"
+msgstr "اسم المرفق"
+
+#. module: wt_documents
+#: code:addons/wt_documents/wizard/wizard.py:0
+#, python-format
+msgid ""
+"Hello,<br><br>Property called %s<br>\n"
+"                Property location is (%s)<br>"
+msgstr ""
+
+#. module: wt_documents
+#: model:ir.model.fields,field_description:wt_documents.field_confirm_document__id
+#: model:ir.model.fields,field_description:wt_documents.field_document_config__id
+#: model:ir.model.fields,field_description:wt_documents.field_ir_attachment__id
+#: model:ir.model.fields,field_description:wt_documents.field_res_country_state__id
+#: model:ir.model.fields,field_description:wt_documents.field_send_document__id
+#: model:ir.model.fields,field_description:wt_documents.field_wide_department__id
+#: model:ir.model.fields,field_description:wt_documents.field_wide_documents__id
+#: model:ir.model.fields,field_description:wt_documents.field_wide_documents_confirmed__id
+#: model:ir.model.fields,field_description:wt_documents.field_wide_documents_received__id
+msgid "ID"
+msgstr "المُعرف"
+
+#. module: wt_documents
+#: model:ir.model.fields,field_description:wt_documents.field_confirm_document____last_update
+#: model:ir.model.fields,field_description:wt_documents.field_document_config____last_update
+#: model:ir.model.fields,field_description:wt_documents.field_ir_attachment____last_update
+#: model:ir.model.fields,field_description:wt_documents.field_res_country_state____last_update
+#: model:ir.model.fields,field_description:wt_documents.field_send_document____last_update
+#: model:ir.model.fields,field_description:wt_documents.field_wide_department____last_update
+#: model:ir.model.fields,field_description:wt_documents.field_wide_documents____last_update
+#: model:ir.model.fields,field_description:wt_documents.field_wide_documents_confirmed____last_update
+#: model:ir.model.fields,field_description:wt_documents.field_wide_documents_received____last_update
+msgid "Last Modified on"
+msgstr "آخر تعديل في"
+
+#. module: wt_documents
+#: model:ir.model.fields,field_description:wt_documents.field_confirm_document__write_uid
+#: model:ir.model.fields,field_description:wt_documents.field_document_config__write_uid
+#: model:ir.model.fields,field_description:wt_documents.field_send_document__write_uid
+#: model:ir.model.fields,field_description:wt_documents.field_wide_department__write_uid
+#: model:ir.model.fields,field_description:wt_documents.field_wide_documents__write_uid
+#: model:ir.model.fields,field_description:wt_documents.field_wide_documents_confirmed__write_uid
+#: model:ir.model.fields,field_description:wt_documents.field_wide_documents_received__write_uid
+msgid "Last Updated by"
+msgstr "آخر تعديل بواسطة"
+
+#. module: wt_documents
+#: model:ir.model.fields,field_description:wt_documents.field_confirm_document__write_date
+#: model:ir.model.fields,field_description:wt_documents.field_document_config__write_date
+#: model:ir.model.fields,field_description:wt_documents.field_send_document__write_date
+#: model:ir.model.fields,field_description:wt_documents.field_wide_department__write_date
+#: model:ir.model.fields,field_description:wt_documents.field_wide_documents__write_date
+#: model:ir.model.fields,field_description:wt_documents.field_wide_documents_confirmed__write_date
+#: model:ir.model.fields,field_description:wt_documents.field_wide_documents_received__write_date
+msgid "Last Updated on"
+msgstr "آخر تعديل بتاريخ"
+
+#. module: wt_documents
+#: model:ir.model.fields,field_description:wt_documents.field_wide_documents__qr_code
+#: model:ir.model.fields,field_description:wt_documents.field_wide_documents_confirmed__qr_code
+#: model:ir.model.fields,field_description:wt_documents.field_wide_documents_received__qr_code
+msgid "Qr Code"
+msgstr "الكيو ار كود"
+
+#. module: wt_documents
+#: model_terms:ir.ui.view,arch_db:wt_documents.wide_documents_temp
+msgid "Qrcode"
+msgstr ""
+
+#. module: wt_documents
+#: model:ir.model.fields,field_description:wt_documents.field_ir_attachment__attach_model
+msgid "Report Model"
+msgstr ""
+
+#. module: wt_documents
+#: model:ir.model.fields,field_description:wt_documents.field_ir_attachment__attach_type
+msgid "Report Type"
+msgstr ""
+
+#. module: wt_documents
+#: model:ir.model,name:wt_documents.model_send_document
+msgid "Send Document"
+msgstr "ارسال الخطاب"
+
+#. module: wt_documents
+#: model_terms:ir.ui.view,arch_db:wt_documents.confirm_document_wizard_form
+#: model_terms:ir.ui.view,arch_db:wt_documents.send_document_wizard_form
+msgid "Send Document To Customer"
+msgstr "ارسال الخطاب للعميل"
+
+#. module: wt_documents
+#: model:ir.model.fields,field_description:wt_documents.field_wide_documents__seq
+#: model:ir.model.fields,field_description:wt_documents.field_wide_documents_confirmed__seq
+#: model:ir.model.fields,field_description:wt_documents.field_wide_documents_received__seq
+msgid "Seq"
+msgstr "التسلسل"
+
+#. module: wt_documents
+#: code:addons/wt_documents/controllers/controllers.py:0
+#, python-format
+msgid "Something horrible happened"
+msgstr ""
+
+#. module: wt_documents
+#: model:ir.model.fields,field_description:wt_documents.field_res_country_state__code
+msgid "State Code"
+msgstr "كود الولاية"
+
+#. module: wt_documents
+#: code:addons/wt_documents/controllers/controllers.py:0
+#, python-format
+msgid "The selected file exceed the maximum file size of 5MB"
+msgstr "الملف المرفق يتخطي الحجم المسموح به وهو 5 ميجابايت"
+
+#. module: wt_documents
+#: model:ir.model.fields,help:wt_documents.field_res_country_state__code
+msgid "The state code."
+msgstr "كود الولاية."
+
+#. module: wt_documents
+#: model:ir.model,name:wt_documents.model_wide_department
+msgid "Wide Department"
+msgstr ""
+
+#. module: wt_documents
+#: model:ir.model,name:wt_documents.model_wide_documents
+msgid "Wide Documents"
+msgstr ""
+
+#. module: wt_documents
+#: code:addons/wt_documents/controllers/controllers.py:0
+#, python-format
+msgid "You are not allowed to upload an attachment here."
+msgstr ""
+
+#. module: wt_documents
+#: model_terms:ir.ui.view,arch_db:wt_documents.document_config_view_tree
+msgid "document.config_tree"
+msgstr ""
+
+#. module: wt_documents
+#: model_terms:ir.ui.view,arch_db:wt_documents.document_config_view_form
+msgid "document_config_form"
+msgstr ""
+
+#. module: wt_documents
+#: model_terms:ir.ui.view,arch_db:wt_documents.wide_department_view_form
+msgid "wide.department_form"
+msgstr ""
+
+#. module: wt_documents
+#: model:ir.model,name:wt_documents.model_wide_documents_confirmed
+msgid "wide.documents.confirmed"
+msgstr ""
+
+#. module: wt_documents
+#: model:ir.model,name:wt_documents.model_wide_documents_received
+msgid "wide.documents.received"
+msgstr ""
+
+#. module: wt_documents
+#: model_terms:ir.ui.view,arch_db:wt_documents.wide_department_view_tree
+msgid "wide_department_tree"
+msgstr ""
+
+#. module: wt_documents
+#: model_terms:ir.ui.view,arch_db:wt_documents.wide_documents_confirmed_view_form
+#: model_terms:ir.ui.view,arch_db:wt_documents.wide_documents_received_view_form
+#: model_terms:ir.ui.view,arch_db:wt_documents.wide_documents_view_form
+msgid "wide_documents_form"
+msgstr ""
+
+#. module: wt_documents
+#: model_terms:ir.ui.view,arch_db:wt_documents.wide_documents_confirmed_view_tree
+#: model_terms:ir.ui.view,arch_db:wt_documents.wide_documents_view_tree
+#: model_terms:ir.ui.view,arch_db:wt_documents.wide_received_confirmed_view_tree
+msgid "wide_documents_tree"
+msgstr ""
+
+#. module: wt_documents
+#: model_terms:ir.ui.view,arch_db:wt_documents.send_document_wizard_form
+msgid "إرسال"
+msgstr ""
+
+#. module: wt_documents
+#: model_terms:ir.ui.view,arch_db:wt_documents.wide_documents_confirmed_view_form
+#: model_terms:ir.ui.view,arch_db:wt_documents.wide_documents_received_view_form
+#: model_terms:ir.ui.view,arch_db:wt_documents.wide_documents_view_form
+msgid "إرسال إلي العميل"
+msgstr ""
+
+#. module: wt_documents
+#: code:addons/wt_documents/models/model.py:0
+#: code:addons/wt_documents/models/model.py:0
+#: code:addons/wt_documents/models/model.py:0
+#: model:ir.actions.act_window,name:wt_documents.action_send_document
+#, python-format
+msgid "إرسال الخطاب"
+msgstr ""
+
+#. module: wt_documents
+#: model:ir.model.fields,field_description:wt_documents.field_wide_documents__document_config_id
+#: model:ir.model.fields,field_description:wt_documents.field_wide_documents_confirmed__document_config_id
+#: model:ir.model.fields,field_description:wt_documents.field_wide_documents_received__document_config_id
+msgid "إعداد الخطاب"
+msgstr ""
+
+#. module: wt_documents
+#: model_terms:ir.ui.view,arch_db:wt_documents.confirm_document_wizard_form
+#: model_terms:ir.ui.view,arch_db:wt_documents.send_document_wizard_form
+msgid "إلغاء"
+msgstr ""
+
+#. module: wt_documents
+#: model:ir.model.fields,field_description:wt_documents.field_wide_department__name
+msgid "اسم الإدارة"
+msgstr ""
+
+#. module: wt_documents
+#: model:ir.model.fields,field_description:wt_documents.field_wide_documents__confirm_user_id
+#: model:ir.model.fields,field_description:wt_documents.field_wide_documents_confirmed__confirm_user_id
+#: model:ir.model.fields,field_description:wt_documents.field_wide_documents_received__confirm_user_id
+msgid "اعتمد بواسطة"
+msgstr ""
+
+#. module: wt_documents
+#: model:ir.actions.act_window,name:wt_documents.wide_doc_depart_action
+#: model:ir.ui.menu,name:wt_documents.wide_doc_depart
+msgid "الإدارات"
+msgstr ""
+
+#. module: wt_documents
+#: model:ir.model.fields,field_description:wt_documents.field_wide_documents__department_id
+#: model:ir.model.fields,field_description:wt_documents.field_wide_documents_confirmed__department_id
+#: model:ir.model.fields,field_description:wt_documents.field_wide_documents_received__department_id
+msgid "الإدارة"
+msgstr ""
+
+#. module: wt_documents
+#: model:ir.ui.menu,name:wt_documents.wide_doc_conf
+msgid "الإعدادت"
+msgstr ""
+
+#. module: wt_documents
+#: model:ir.ui.menu,name:wt_documents.wide_doc_root
+msgid "الاتصالات الإداراية"
+msgstr ""
+
+#. module: wt_documents
+#: model:ir.module.category,name:wt_documents.wt_documents_categ
+msgid "الاتصالات الإدارية"
+msgstr ""
+
+#. module: wt_documents
+#: model:ir.model.fields,field_description:wt_documents.field_document_config__name
+msgid "الاسم"
+msgstr ""
+
+#. module: wt_documents
+#: model_terms:ir.ui.view,arch_db:wt_documents.wide_documents_view_form
+msgid "الاعدادت والتوقيع"
+msgstr ""
+
+#. module: wt_documents
+#: model_terms:ir.ui.view,arch_db:wt_documents.wide_documents_confirmed_view_form
+#: model_terms:ir.ui.view,arch_db:wt_documents.wide_documents_received_view_form
+msgid "الاعدادت والمرفقات"
+msgstr ""
+
+#. module: wt_documents
+#: model:ir.model.fields,field_description:wt_documents.field_wide_documents__date
+#: model:ir.model.fields,field_description:wt_documents.field_wide_documents_confirmed__date
+#: model:ir.model.fields,field_description:wt_documents.field_wide_documents_received__date
+msgid "التاريخ"
+msgstr ""
+
+#. module: wt_documents
+#: model:ir.model.fields,field_description:wt_documents.field_wide_documents__date_hijri
+#: model:ir.model.fields,field_description:wt_documents.field_wide_documents_confirmed__date_hijri
+#: model:ir.model.fields,field_description:wt_documents.field_wide_documents_received__date_hijri
+msgid "التاريخ الهجري"
+msgstr ""
+
+#. module: wt_documents
+#: model:ir.model.fields,field_description:wt_documents.field_wide_documents__digital_signature
+#: model:ir.model.fields,field_description:wt_documents.field_wide_documents_confirmed__digital_signature
+#: model:ir.model.fields,field_description:wt_documents.field_wide_documents_received__digital_signature
+msgid "التوقيع"
+msgstr ""
+
+#. module: wt_documents
+#: model_terms:ir.ui.view,arch_db:wt_documents.wide_documents_temp
+msgid "التوقيع:"
+msgstr ""
+
+#. module: wt_documents
+#: model:ir.model.fields,field_description:wt_documents.field_wide_documents_received__destination
+msgid "الجهة المرسلة"
+msgstr ""
+
+#. module: wt_documents
+#: model:ir.model.fields,field_description:wt_documents.field_wide_documents__state
+#: model:ir.model.fields,field_description:wt_documents.field_wide_documents_confirmed__state
+#: model:ir.model.fields,field_description:wt_documents.field_wide_documents_received__state
+msgid "الحاله"
+msgstr ""
+
+#. module: wt_documents
+#: model:ir.model.fields,field_description:wt_documents.field_confirm_document__document_id
+#: model:ir.model.fields,field_description:wt_documents.field_send_document__document_id
+msgid "الخطاب"
+msgstr ""
+
+#. module: wt_documents
+#: model:ir.model.fields,field_description:wt_documents.field_confirm_document__document_confirmed_id
+#: model:ir.model.fields,field_description:wt_documents.field_send_document__document_confirmed_id
+msgid "الخطاب المعتمد"
+msgstr ""
+
+#. module: wt_documents
+#: model:ir.actions.act_window,name:wt_documents.wide_doc_action
+#: model:ir.ui.menu,name:wt_documents.wide_doc
+#: model:ir.ui.menu,name:wt_documents.wide_doc_categ
+msgid "الخطابات"
+msgstr ""
+
+#. module: wt_documents
+#: model:ir.actions.act_window,name:wt_documents.wide_received_doc_action
+#: model:ir.ui.menu,name:wt_documents.wide_received_doc
+msgid "الخطابات الواردة"
+msgstr ""
+
+#. module: wt_documents
+#: model:ir.actions.act_window,name:wt_documents.document_config_action
+#: model:ir.ui.menu,name:wt_documents.document_config
+msgid "الشركات"
+msgstr ""
+
+#. module: wt_documents
+#: model:ir.model.fields,field_description:wt_documents.field_document_config__company_id
+#: model_terms:ir.ui.view,arch_db:wt_documents.wide_documents_confirmed_view_form
+msgid "الشركة"
+msgstr ""
+
+#. module: wt_documents
+#: model:ir.model.fields,field_description:wt_documents.field_send_document__partner_id
+msgid "العملاء"
+msgstr ""
+
+#. module: wt_documents
+#: model:ir.model.fields,field_description:wt_documents.field_document_config__footer
+msgid "الفوتر(Footer)"
+msgstr ""
+
+#. module: wt_documents
+#: model:ir.model.fields,field_description:wt_documents.field_wide_documents__body
+#: model:ir.model.fields,field_description:wt_documents.field_wide_documents_confirmed__body
+#: model:ir.model.fields,field_description:wt_documents.field_wide_documents_received__body
+msgid "المحتوي"
+msgstr ""
+
+#. module: wt_documents
+#: model:ir.model.fields,field_description:wt_documents.field_wide_documents__files
+#: model:ir.model.fields,field_description:wt_documents.field_wide_documents_confirmed__files
+#: model:ir.model.fields,field_description:wt_documents.field_wide_documents_received__files
+#: model_terms:ir.ui.view,arch_db:wt_documents.wide_documents_view_form
+msgid "المرفقات"
+msgstr ""
+
+#. module: wt_documents
+#: model:ir.model.fields,field_description:wt_documents.field_wide_documents__received_ids
+#: model:ir.model.fields,field_description:wt_documents.field_wide_documents_confirmed__received_ids
+#: model:ir.model.fields,field_description:wt_documents.field_wide_documents_received__received_ids
+msgid "المستلمون"
+msgstr ""
+
+#. module: wt_documents
+#: model:ir.model.fields,field_description:wt_documents.field_wide_documents__subject
+#: model:ir.model.fields,field_description:wt_documents.field_wide_documents_confirmed__subject
+msgid "الموضوع"
+msgstr ""
+
+#. module: wt_documents
+#: model:ir.actions.act_window,name:wt_documents.wide_confirm_doc_action
+#: model:ir.ui.menu,name:wt_documents.wide_confirm_doc
+msgid "النماذج المعتمدة"
+msgstr ""
+
+#. module: wt_documents
+#: model:ir.model.fields,field_description:wt_documents.field_document_config__header
+msgid "الهيدر(Header)"
+msgstr ""
+
+#. module: wt_documents
+#: model_terms:ir.ui.view,arch_db:wt_documents.confirm_document_wizard_form
+msgid "تأكيد"
+msgstr ""
+
+#. module: wt_documents
+#: code:addons/wt_documents/models/model.py:0
+#: code:addons/wt_documents/models/model.py:0
+#: code:addons/wt_documents/models/model.py:0
+#: model:ir.actions.act_window,name:wt_documents.action_confirm_document
+#: model_terms:ir.ui.view,arch_db:wt_documents.wide_documents_confirmed_view_form
+#: model_terms:ir.ui.view,arch_db:wt_documents.wide_documents_received_view_form
+#: model_terms:ir.ui.view,arch_db:wt_documents.wide_documents_view_form
+#, python-format
+msgid "تأكيد الخطاب"
+msgstr ""
+
+#. module: wt_documents
+#: model:res.groups,name:wt_documents.document_confirm
+msgid "تأكيد الخطابات الإدارية"
+msgstr ""
+
+#. module: wt_documents
+#: model:ir.model.fields,field_description:wt_documents.field_wide_documents__confirm_date
+#: model:ir.model.fields,field_description:wt_documents.field_wide_documents_confirmed__confirm_date
+#: model:ir.model.fields,field_description:wt_documents.field_wide_documents_received__confirm_date
+msgid "تاريخ الإعتماد"
+msgstr ""
+
+#. module: wt_documents
+#: model:ir.model.fields,field_description:wt_documents.field_wide_documents__email_message
+#: model:ir.model.fields,field_description:wt_documents.field_wide_documents_confirmed__email_message
+#: model:ir.model.fields,field_description:wt_documents.field_wide_documents_received__email_message
+msgid "رسالة الإيميل"
+msgstr ""
+
+#. module: wt_documents
+#: model:ir.model.fields,field_description:wt_documents.field_wide_department__code
+msgid "رقم الإدارة"
+msgstr ""
+
+#. module: wt_documents
+#: model:ir.model.fields,field_description:wt_documents.field_wide_documents_received__wide_document_id
+msgid "رقم الصادر"
+msgstr ""
+
+#. module: wt_documents
+#: model:ir.model.fields,field_description:wt_documents.field_wide_documents__name
+#: model:ir.model.fields,field_description:wt_documents.field_wide_documents_confirmed__name
+#: model:ir.model.fields,field_description:wt_documents.field_wide_documents_received__name
+msgid "رقم المعاملة"
+msgstr ""
+
+#. module: wt_documents
+#: model:ir.actions.report,name:wt_documents.wide_documents_qr
+msgid "طباعة QR"
+msgstr ""
+
+#. module: wt_documents
+#: model:ir.actions.report,name:wt_documents.wide_documents_report
+msgid "طباعة الخطاب"
+msgstr ""
+
+#. module: wt_documents
+#: model:ir.model.constraint,message:wt_documents.constraint_wide_department_code_uniq
+msgid "لا يمكن تكرار رقم الإدارة"
+msgstr ""
+
+#. module: wt_documents
+#: model:ir.model.fields.selection,name:wt_documents.selection__wide_documents__state__confirm
+#: model:ir.model.fields.selection,name:wt_documents.selection__wide_documents_confirmed__state__confirm
+#: model:ir.model.fields.selection,name:wt_documents.selection__wide_documents_received__state__confirm
+msgid "مؤكد"
+msgstr ""
+
+#. module: wt_documents
+#: model:ir.model.fields,field_description:wt_documents.field_wide_documents_received__subject
+msgid "مختصر المعاملة"
+msgstr ""
+
+#. module: wt_documents
+#: model:res.groups,name:wt_documents.wt_documents_manager
+msgid "مدير"
+msgstr ""
+
+#. module: wt_documents
+#: model:res.groups,name:wt_documents.wt_documents_user
+msgid "مستخدم"
+msgstr ""
+
+#. module: wt_documents
+#: model:ir.model.fields.selection,name:wt_documents.selection__wide_documents__state__draft
+#: model:ir.model.fields.selection,name:wt_documents.selection__wide_documents_confirmed__state__draft
+#: model:ir.model.fields.selection,name:wt_documents.selection__wide_documents_received__state__draft
+msgid "مسوده"
+msgstr ""
+
+#. module: wt_documents
+#: model_terms:ir.ui.view,arch_db:wt_documents.confirm_document_wizard_form
+msgid "هل أنت متأكد من تصديق الخطاب"
+msgstr ""
+
+#. module: wt_documents
+#: model_terms:ir.ui.view,arch_db:wt_documents.wide_documents_view_form
+msgid "هيكل الخطاب"
+msgstr ""
+
+#. module: wt_documents
+#: code:addons/wt_documents/wizard/wizard.py:0
+#, python-format
+msgid "يرجي إضافة الايميل الخاص بالعميل"
+msgstr ""

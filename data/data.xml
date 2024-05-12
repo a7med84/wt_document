@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+
+        <record id="testing_form_sequence" model="ir.sequence">
+            <field name="name">Wide Documents Sequence</field>
+            <field name="code">wide.documents.seq</field>
+            <field name="prefix"></field>
+            <field name="company_id" eval="False"/>
+            <field name="padding">5</field>
+        </record>
+        <record id="testing_form_sequence_confirmed" model="ir.sequence">
+            <field name="name">Wide Documents Confirmed Sequence</field>
+            <field name="code">wide.documents.confirm.seq</field>
+            <field name="prefix"></field>
+            <field name="company_id" eval="False"/>
+            <field name="padding">5</field>
+        </record>
+        <record id="testing_form_sequence_received" model="ir.sequence">
+            <field name="name">Wide Documents Received Sequence</field>
+            <field name="code">wide.documents.received.seq</field>
+            <field name="prefix"></field>
+            <field name="company_id" eval="False"/>
+            <field name="padding">5</field>
+        </record>
+
+    </data>
+</odoo>

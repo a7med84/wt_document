@@ -1,0 +1,17 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_wide_documents,wide.documents,model_wide_documents,wt_documents.wt_documents_manager,1,1,1,1
+access_wide_documents_specific,wide.documents.specific,model_wide_documents,wt_documents.access_specific_document,1,1,0,0
+access_wide_documents_confirm,wide.documents.confirm,model_wide_documents,wt_documents.document_confirm,1,0,0,0
+access_wide_documents,wide.documents,model_wide_documents,wt_documents.wt_documents_user,1,1,1,0
+access_wide_documents_confirmed,wide.documents.confirmed,model_wide_documents_confirmed,wt_documents.wt_documents_manager,1,1,1,1
+access_wide_documents_confirmed_specific,wide.documents.confirmed_specific,model_wide_documents_confirmed,wt_documents.access_specific_document,1,1,0,0
+access_wide_documents_confirmed_confirm,wide.documents.confirmed_confirm,model_wide_documents_confirmed,wt_documents.document_confirm,1,0,0,0
+access_wide_documents_confirmed,wide.documents.confirmed,model_wide_documents_confirmed,wt_documents.wt_documents_user,1,1,1,0
+access_wide_documents_received,wide.documents.received,model_wide_documents_received,wt_documents.wt_documents_manager,1,1,1,1
+access_wide_documents_received_specific,wide.documents.received_specific,model_wide_documents_received,wt_documents.access_specific_document,1,1,0,0
+access_wide_documents_received_confirm,wide.documents.received_confirm,model_wide_documents_received,wt_documents.document_confirm,1,0,0,0
+access_wide_documents_received,wide.documents.received,model_wide_documents_received,wt_documents.wt_documents_user,1,1,1,0
+access_wide_department,wide.department,model_wide_department,,1,1,1,1
+access_document_config,document.config,model_document_config,,1,1,1,1
+access_send_document,send.document,model_send_document,,1,1,1,1
+access_confirm_document,confirm.document,model_confirm_document,,1,1,1,1

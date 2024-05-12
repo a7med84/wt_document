@@ -1,0 +1,9 @@
+/* english font */
+@font-face {
+  font-family: 'Traditional-Arabic';
+  src: url('../fonts/Traditional-Arabic.ttf');
+  }
+
+  .Traditional-Arabic {
+    font-family: Traditional-Arabic !important;
+ }

@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="wt_documents_categ" model="ir.module.category">
+            <field name="name">الاتصالات الإدارية</field>
+            <field name="sequence" eval="1"/>
+        </record>
+
+
+        <record id="wt_documents_user" model="res.groups">
+            <field name="name">مستخدم</field>
+            <field name="category_id" ref="wt_documents.wt_documents_categ"/>
+            <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+        </record>
+
+        <record id="rule_wt_documents_user" model="ir.rule">
+            <field name="name">Access user documents</field>
+            <field name="model_id" ref="model_wide_documents"/>
+            <field name="groups" eval="[(4, ref('wt_documents.wt_documents_user'))]"/>
+            <field name="domain_force">[('create_uid','=', user.id)]</field>
+            <field name="perm_unlink" eval="0"/>
+        </record>
+        <record id="rule_wt_documents_confirmed_user" model="ir.rule">
+            <field name="name">Access user confirmed documents</field>
+            <field name="model_id" ref="model_wide_documents_confirmed"/>
+            <field name="groups" eval="[(4, ref('wt_documents.wt_documents_user'))]"/>
+            <field name="domain_force">[('create_uid','=', user.id)]</field>
+            <field name="perm_unlink" eval="0"/>
+        </record>
+        <record id="rule_wt_documents_received_user" model="ir.rule">
+            <field name="name">Access user received documents</field>
+            <field name="model_id" ref="model_wide_documents_received"/>
+            <field name="groups" eval="[(4, ref('wt_documents.wt_documents_user'))]"/>
+            <field name="domain_force">[('create_uid','=', user.id)]</field>
+            <field name="perm_unlink" eval="0"/>
+        </record>
+
+        <record id="wt_documents_manager" model="res.groups">
+            <field name="name">مدير</field>
+            <field name="category_id" ref="wt_documents.wt_documents_categ"/>
+            <field name="implied_ids"
+                   eval="[(4, ref('wt_documents.wt_documents_user'))]"/>
+        </record>
+        <record id="rule_wt_documents_manager" model="ir.rule">
+            <field name="name">Access manager all documents</field>
+            <field name="model_id" ref="model_wide_documents"/>
+            <field name="groups" eval="[(4, ref('wt_documents.wt_documents_manager'))]"/>
+            <field name="domain_force">[(1,'=', 1)]</field>
+        </record>
+        <record id="rule_wt_documents_confirmed_manager" model="ir.rule">
+            <field name="name">Access manager all confirmed documents</field>
+            <field name="model_id" ref="model_wide_documents_confirmed"/>
+            <field name="groups" eval="[(4, ref('wt_documents.wt_documents_manager'))]"/>
+            <field name="domain_force">[(1,'=', 1)]</field>
+        </record>
+
+        <record id="rule_wt_documents_received_manager" model="ir.rule">
+            <field name="name">Access manager all received documents</field>
+            <field name="model_id" ref="model_wide_documents_received"/>
+            <field name="groups" eval="[(4, ref('wt_documents.wt_documents_manager'))]"/>
+            <field name="domain_force">[(1,'=', 1)]</field>
+        </record>
+
+        <record id="account_billing_seeown_custom" model="ir.rule">
+            <field name="name">Access Billing Own invoices</field>
+            <field name="model_id" ref="account.model_account_move"/>
+            <field name="groups" eval="[(4, ref('account.group_account_invoice'))]"/>
+            <field name="domain_force">[('user_id','=', user.id)]</field>
+
+        </record>
+
+
+        <record id="document_confirm" model="res.groups">
+            <field name="name">تأكيد الخطابات الإدارية</field>
+            <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+            <field name="category_id" ref="wt_documents.wt_documents_categ"/>
+        </record>
+        <record model="ir.rule" id="rule_wt_documents_confirm_user">
+            <field name="name">Access user documents</field>
+            <field name="model_id" ref="model_wide_documents"/>
+            <field name="groups" eval="[(4, ref('wt_documents.document_confirm'))]"/>
+            <field name="domain_force">[('confirm_user_ids','in',[user.id])]</field>
+        </record>
+
+        <record id="access_specific_document" model="res.groups">
+            <field name="name">السماح بالوصول لخطابات معينة</field>
+            <field name="category_id" ref="wt_documents.wt_documents_categ"/>
+            <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+        </record>
+        <record model="ir.rule" id="rule_wt_documents_specific_user">
+            <field name="name">Access specific user documents</field>
+            <field name="model_id" ref="model_wide_documents"/>
+            <field name="groups" eval="[(4, ref('wt_documents.access_specific_document'))]"/>
+            <field name="domain_force">[('editable_user_ids','in',[user.id])]</field>
+        </record>
+        <!--<record id="account.account_move_see_all" model="ir.rule">
+            <field name="name">All Journal Entries</field>
+            <field ref="account.model_account_move" name="model_id"/>
+            <field name="domain_force">[(1, '=', 1)]</field>
+            <field name="active" eval="False"/>
+            <field name="groups" eval="[(4, ref('account.group_account_invoice'))]"/>
+        </record>
+        <record id="account.account_move_rule_group_invoice" model="ir.rule">
+            <field name="name">Readonly Move</field>
+            <field name="model_id" ref="account.model_account_move"/>
+            <field name="domain_force">[(1, '=', 1)]</field>
+            <field name="active" eval="False"/>
+            <field name="groups" eval="[(4, ref('account.group_account_invoice'))]"/>
+        </record>-->
+
+    </data>
+</odoo>

@@ -1,0 +1,362 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="wide_documents_view_form" model="ir.ui.view">
+            <field name="name">wide_documents_view_form</field>
+            <field name="model">wide.documents</field>
+            <field name="arch" type="xml">
+                <form string="wide_documents_form">
+                    <header>
+                        <button name="action_send_document" type="object" class="oe_highlight"
+                                string="إرسال إلي العميل" states="confirm"/>
+                        <button name="confirm_document" type="object" class="oe_highlight"
+                                string="تأكيد الخطاب" states="draft" groups="wt_documents.wt_documents_manager,wt_documents.document_confirm"/>
+                        <field name="state" widget="statusbar" statusbar_visible="draft,confirm"/>
+                    </header>
+                    <sheet>
+                        <group col="4">
+                            <field name="name" attrs="{'readonly':[('state','=','confirm')]}"/>
+                            <field name="date" attrs="{'readonly':[('state','=','confirm')]}"/>
+                            <field name="department_id" required="1" attrs="{'readonly':[('state','=','confirm')]}"/>
+                            <field name="date_hijri"/>
+                        </group>
+                        <group>
+                            <field name="subject" required="1" attrs="{'readonly':[('state','=','confirm')]}"/>
+                        </group>
+                        <notebook>
+                            <page string="هيكل الخطاب">
+                                <field name="body" widget="ckeditor" attrs="{'readonly':[('state','=','confirm')]}"/>
+                            </page>
+                            <page string="الاعدادت والتوقيع">
+                                <group col="2">
+                                    <field name="document_config_id" attrs="{'readonly':[('state','=','confirm')]}"/>
+                                </group>
+                                <group>
+                                    <field name="email_message" widget="ckeditor"
+                                           attrs="{'readonly':[('state','=','confirm')]}"/>
+                                </group>
+                                <group col="4">
+                                    <field name="digital_signature" widget="signature"
+                                           attrs="{'readonly':[('state','!=','confirm')]}"/>
+                                </group>
+                            </page>
+                            <page string="المرفقات">
+                                <group>
+                                    <field name="files" widget="many2many_binary" filename="filename"
+                                           attrs="{'readonly':[('state','=','confirm')]}"/>
+                                    <field name="filename" invisible="1"/>
+                                </group>
+                                <group>
+                                    <field name="received_ids" readonly="1"/>
+                                    <field name="qr_code" readonly="1" invisible="1"/>
+                                </group>
+                            </page>
+                            <page name="permissions" string="الصلاحيات">
+                                <group>
+                                    <field name="editable_user_ids" widget="many2many_tags"/>
+                                    <field name="confirm_user_ids" widget="many2many_tags"/>
+                                </group>
+                            </page>
+                        </notebook>
+
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record id="wide_department_view_form" model="ir.ui.view">
+            <field name="name">wide.department_view_form</field>
+            <field name="model">wide.department</field>
+            <field name="arch" type="xml">
+                <form string="wide.department_form">
+                    <sheet>
+                        <group col="4">
+                            <field name="name" required="1"/>
+                            <field name="code" required="1"/>
+
+                            <field name="hr_department" required="0"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record id="wide_department_view_tree" model="ir.ui.view">
+            <field name="name">wide_department_view_tree</field>
+            <field name="model">wide.department</field>
+            <field name="arch" type="xml">
+                <tree string="wide_department_tree">
+                    <field name="name"/>
+                    <field name="code"/>
+                </tree>
+            </field>
+        </record>
+        <record id="wide_documents_view_tree" model="ir.ui.view">
+            <field name="name">wide_documents_view_tree</field>
+            <field name="model">wide.documents</field>
+            <field name="arch" type="xml">
+                <tree string="wide_documents_tree">
+                    <field name="name"/>
+                    <field name="date"/>
+                    <field name="subject"/>
+                    <field name="department_id"/>
+                    <field name="create_uid"/>
+                    <field name="confirm_user_id"/>
+                    <field name="confirm_date"/>
+                    <field name="state"/>
+                </tree>
+            </field>
+        </record>
+        <record id="document_config_view_form" model="ir.ui.view">
+            <field name="name">document_config_view_form</field>
+            <field name="model">document.config</field>
+            <field name="arch" type="xml">
+                <form string="document_config_form">
+                    <sheet>
+                        <style>
+                            .Your_custom_class > img { height: 100px; width: 200px; }
+                        </style>
+                        <group col="4">
+                            <field name="name" required="1"/>
+                            <field name="company_id" required="1"/>
+                        </group>
+                        <group col="4">
+                            <field name="header" widget="image" class="Your_custom_class"/>
+                            <field name="footer" widget="image" class="Your_custom_class"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record id="document_config_view_tree" model="ir.ui.view">
+            <field name="name">document.config_view_tree</field>
+            <field name="model">document.config</field>
+            <field name="arch" type="xml">
+                <tree string="document.config_tree">
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+        <record id="wide_doc_action" model="ir.actions.act_window">
+            <field name="name">الخطابات</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">wide.documents</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <record id="wide_doc_depart_action" model="ir.actions.act_window">
+            <field name="name">الإدارات</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">wide.department</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <record id="document_config_action" model="ir.actions.act_window">
+            <field name="name">الشركات</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">document.config</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <menuitem id="wide_doc_root" name="الاتصالات الإداراية" sequence="1"
+                  groups="wt_documents.wt_documents_user,wt_documents.wt_documents_manager,wt_documents.document_confirm,wt_documents.access_specific_document"/>
+        <menuitem id="wide_doc_categ" name="الخطابات" parent="wt_documents.wide_doc_root" sequence="0"
+                  groups="wt_documents.wt_documents_user,wt_documents.wt_documents_manager,wt_documents.document_confirm,wt_documents.access_specific_document"/>
+        <menuitem id="wide_doc" name="الخطابات" parent="wt_documents.wide_doc_categ" sequence="0"
+                  action="wide_doc_action"/>
+        <menuitem id="wide_doc_conf" name="الإعدادت" parent="wt_documents.wide_doc_root" sequence="1"
+                  groups="wt_documents.wt_documents_manager"/>
+        <menuitem id="wide_doc_depart" name="الإدارات" parent="wt_documents.wide_doc_conf" sequence="0"
+                  action="wide_doc_depart_action"/>
+        <menuitem id="document_config" name="الشركات" parent="wt_documents.wide_doc_conf" sequence="1"
+                  action="document_config_action"/>
+
+        <template id="option_header_brand_logo_inherit" inherit_id="website.option_header_brand_logo"
+                  name="Header Brand Logo"
+                  active="True">
+            <xpath expr="//a" position="replace">
+                <a href="https://wide-techno.com" target="_blank" t-attf-class="navbar-brand logo #{_link_class}">
+                    <span t-field="website.logo" t-options="{'widget': 'image'}" role="img"
+                          t-att-aria-label="'Logo of %s' % website.name" t-att-title="website.name"/>
+                </a>
+            </xpath>
+        </template>
+        <!--/////////////////////////////////////////////////////////////////////////////////////////////////////-->
+        <record id="wide_documents_confirmed_view_form" model="ir.ui.view">
+            <field name="name">wide_documents_confirmed_view_form</field>
+            <field name="model">wide.documents.confirmed</field>
+            <field name="arch" type="xml">
+                <form string="wide_documents_form">
+                    <header>
+                        <button name="action_send_document11" type="object" class="oe_highlight"
+                                string="إرسال إلي العميل" states="confirm"/>
+                        <button name="confirm_document11" type="object" class="oe_highlight"
+                                string="تأكيد الخطاب" states="draft" groups="wt_documents.wt_documents_manager"/>
+                        <field name="state" widget="statusbar" statusbar_visible="draft,confirm"/>
+                    </header>
+                    <sheet>
+                        <group col="4">
+                            <field name="name" attrs="{'readonly':[('state','=','confirm')]}"/>
+                            <field name="date" attrs="{'readonly':[('state','=','confirm')]}"/>
+                            <field name="department_id" required="1" attrs="{'readonly':[('state','=','confirm')]}"/>
+                            <field name="date_hijri"/>
+                        </group>
+                        <group>
+                            <field name="subject" required="1" attrs="{'readonly':[('state','=','confirm')]}"/>
+                        </group>
+                        <notebook>
+                            <!--<page string="هيكل الخطاب">
+                                <field name="body" widget="html" attrs="{'readonly':[('state','=','confirm')]}"/>
+                            </page>-->
+                            <page string="الاعدادت والمرفقات">
+                                <group col="2">
+                                    <field name="document_config_id" string="الشركة"
+                                           attrs="{'readonly':[('state','=','confirm')]}"/>
+                                </group>
+                                <group>
+                                    <field name="files" widget="many2many_binary" filename="filename"
+                                           attrs="{'readonly':[('state','=','confirm')]}"/>
+                                    <field name="filename" invisible="1"/>
+                                </group>
+                                <group>
+                                    <field name="email_message" widget="ckeditor"
+                                           attrs="{'readonly':[('state','=','confirm')]}"/>
+                                </group>
+                                <!--<group col="4">
+                                    <field name="digital_signature" widget="signature"
+                                           attrs="{'readonly':[('state','!=','confirm')]}"/>
+                                </group>-->
+                            </page>
+                            <!--<page string="المرفقات">
+                                <group>
+                                    <field name="files" widget="many2many_binary" filename="filename"
+                                           attrs="{'readonly':[('state','=','confirm')]}"/>
+                                    <field name="filename" invisible="1"/>
+                                </group>
+                                <group>
+                                    <field name="received_ids" readonly="1"/>
+                                    <field name="qr_code" readonly="1" invisible="1"/>
+                                </group>
+                            </page>-->
+                        </notebook>
+
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="wide_documents_confirmed_view_tree" model="ir.ui.view">
+            <field name="name">wide_documents_confirmed_view_tree</field>
+            <field name="model">wide.documents.confirmed</field>
+            <field name="arch" type="xml">
+                <tree string="wide_documents_tree">
+                    <field name="name"/>
+                    <field name="date"/>
+                    <!--<field name="subject"/>-->
+                    <field name="department_id"/>
+                    <field name="create_uid"/>
+                    <field name="confirm_user_id"/>
+                    <field name="confirm_date"/>
+                    <field name="state"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="wide_confirm_doc_action" model="ir.actions.act_window">
+            <field name="name">النماذج المعتمدة</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">wide.documents.confirmed</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <menuitem id="wide_confirm_doc" name="النماذج المعتمدة" parent="wt_documents.wide_doc_categ" sequence="1"
+                  action="wide_confirm_doc_action"/>
+
+
+        <!--/////////////////////////////////////////////////////////////////////////////////////////////////////-->
+        <record id="wide_documents_received_view_form" model="ir.ui.view">
+            <field name="name">wide_documents_received_view_form</field>
+            <field name="model">wide.documents.received</field>
+            <field name="arch" type="xml">
+                <form string="wide_documents_form">
+                    <header>
+                        <button name="action_send_document12" type="object" class="oe_highlight"
+                                string="إرسال إلي العميل" states="confirm"/>
+                        <button name="confirm_document12" type="object" class="oe_highlight"
+                                string="تأكيد الخطاب" states="draft" groups="wt_documents.wt_documents_manager"/>
+                        <field name="state" widget="statusbar" statusbar_visible="draft,confirm"/>
+                    </header>
+                    <sheet>
+                        <group col="4">
+                            <field name="name" required="1" attrs="{'readonly':[('state','=','confirm')]}"/>
+                            <field name="date" required="1" attrs="{'readonly':[('state','=','confirm')]}"/>
+                            <field name="department_id" required="1" attrs="{'readonly':[('state','=','confirm')]}"/>
+                            <field name="date_hijri"/>
+                            <field name="destination" required="1" attrs="{'readonly':[('state','=','confirm')]}"/>
+                            <field name="wide_document_id" attrs="{'readonly':[('state','=','confirm')]}"/>
+                        </group>
+                        <group>
+                            <field name="subject" required="1" attrs="{'readonly':[('state','=','confirm')]}"/>
+                        </group>
+                        <notebook>
+                            <!--<page string="هيكل الخطاب">
+                                <field name="body" widget="html" attrs="{'readonly':[('state','=','confirm')]}"/>
+                            </page>-->
+                            <page string="الاعدادت والمرفقات">
+                                <!--<group col="2">
+                                    <field name="document_config_id" string="الشركة" attrs="{'readonly':[('state','=','confirm')]}"/>
+                                </group>-->
+                                <group>
+                                    <field name="files" widget="many2many_binary" filename="filename" required="1"
+                                           attrs="{'readonly':[('state','=','confirm')]}"/>
+                                    <field name="filename" invisible="1"/>
+                                </group>
+                                <group>
+                                    <field name="email_message" widget="ckeditor"
+                                           attrs="{'readonly':[('state','=','confirm')]}"/>
+                                </group>
+                                <!--<group col="4">
+                                    <field name="digital_signature" widget="signature"
+                                           attrs="{'readonly':[('state','!=','confirm')]}"/>
+                                </group>-->
+                            </page>
+                            <!--<page string="المرفقات">
+                                <group>
+                                    <field name="files" widget="many2many_binary" filename="filename"
+                                           attrs="{'readonly':[('state','=','confirm')]}"/>
+                                    <field name="filename" invisible="1"/>
+                                </group>
+                                <group>
+                                    <field name="received_ids" readonly="1"/>
+                                    <field name="qr_code" readonly="1" invisible="1"/>
+                                </group>
+                            </page>-->
+                        </notebook>
+
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="wide_received_confirmed_view_tree" model="ir.ui.view">
+            <field name="name">wide_documents_received_view_tree</field>
+            <field name="model">wide.documents.received</field>
+            <field name="arch" type="xml">
+                <tree string="wide_documents_tree">
+                    <field name="name"/>
+                    <field name="date"/>
+                     <field name="destination"/>
+                    <field name="wide_document_id"/>
+                    <field name="department_id"/>
+                    <field name="create_uid"/>
+                    <field name="confirm_user_id"/>
+                    <field name="confirm_date"/>
+                    <field name="state"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="wide_received_doc_action" model="ir.actions.act_window">
+            <field name="name">الخطابات الواردة</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">wide.documents.received</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <menuitem id="wide_received_doc" name="الخطابات الواردة" parent="wt_documents.wide_doc_categ" sequence="10"
+                  action="wide_received_doc_action"/>
+    </data>
+</odoo>
