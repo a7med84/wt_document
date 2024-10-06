@@ -87,9 +87,6 @@ class ApiController(Controller):
     @route('/qr/attachment/download/<int:attach_id>', type='http', auth='public')
     def qr_scanned_download(self, attach_id):
         invoice = request.env['ir.attachment'].sudo().search([('id', '=', attach_id)])
-        print(invoice)
         data = io.BytesIO(base64.standard_b64decode(invoice["datas"]))
-        print(data)
         filename = invoice.name + '.pdf'
-        print(filename)
         return http.send_file(data, filename=filename, as_attachment=True)

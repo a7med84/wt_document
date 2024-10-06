@@ -35,7 +35,7 @@ class SendDocument(models.TransientModel):
                 self.document_id.id)
             data_record = base64.b64encode(report_template_id[0])
             ir_values = {
-                'name': "تقرير الخطاب" + '.pdf',
+                'name': f'{self.document_id.subject} {self.document_id.name} {self.document_id.date_hijri}.pdf',
                 'type': 'binary',
                 'datas': data_record,
                 'store_fname': data_record,
