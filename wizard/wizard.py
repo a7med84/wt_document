@@ -39,17 +39,12 @@ class SendDocument(models.TransientModel):
     partner_id = fields.Many2many(comodel_name='res.partner', string='العملاء')
     document_id = fields.Many2one(comodel_name='wide.documents', string='الخطاب')
     document_confirmed_id = fields.Many2one(comodel_name='wide.documents.confirmed', string='الخطاب المعتمد')
-    email_from = fields.Selection(
-        string='ايميل المرسل',
-        selection=[('no-reply@wtsaudi.com', 'no-reply@wtsaudi.com'),
-                   ('noreply@wtsaudi.com', 'noreply@wtsaudi.com'),
-                   ('hr@wtsaudi.com', 'شئون الموظفين'),
-                   ('info@wtsaudi.com', 'من نحن'),
-                   ('sales@wtsaudi.com', 'المبيعات'),
-                   ('accounting@wtsaudi.com', 'الحسابات'),
-                   ('support@wtsaudi.com', 'الدعم الفني')
-                   ],
-        default="no-reply@wtsaudi.com'", )
+    sender = fields.Many2one(
+        comodel_name='res.partner', 
+        string='المرسل',
+        domain=lambda self: [('is_email_sender', '=', True)],
+        )
+    email_from = fields.Char('ايميل المرسل', related='sender.email', readonly=True)
 
 
     def send_email_with_attachment(self):
@@ -75,14 +70,15 @@ class SendDocument(models.TransientModel):
             for paetner in self.partner_id:
                 values = {
                     'subject': self.document_id.document_config_id.company_id.partner_id.name,
-                    'author_id': self.env.company.partner_id.id,
                     'email_to': paetner.email,
-                    'email_from': self.email_from,
                     'state': 'outgoing',
                     'body_html': self.document_id.email_message,
                     # 'recipient_ids': self.partner_id,
                     'attachment_ids': [(6, 0, [x for x in attachments])],
                 }
+                if self.sender:
+                    values['author_id'] = self.sender.id
+                    values['email_from'] = self.email_from
                 template = self.env['mail.mail'].create(values)
                 template.send()
                 self.document_id.received_ids = [(4, paetner.id)]
@@ -94,14 +90,15 @@ class SendDocument(models.TransientModel):
             for paetner in self.partner_id:
                 values = {
                     'subject': self.document_confirmed_id.document_config_id.company_id.partner_id.name,
-                    'author_id': self.env.company.partner_id.id,
-                    'email_from': self.email_from,
                     'email_to': paetner.email,
                     'state': 'outgoing',
                     'body_html': self.document_confirmed_id.email_message,
                     # 'recipient_ids': self.partner_id,
                     'attachment_ids': [(6, 0, [x for x in attachments])],
                 }
+                if self.sender:
+                    values['author_id'] = self.sender.id
+                    values['email_from'] = self.email_from
                 template = self.env['mail.mail'].create(values)
                 template.send()
                 self.document_id.received_ids = [(4, paetner.id)]
@@ -115,14 +112,16 @@ class SendDocument(models.TransientModel):
                 Property location is (%s)<br>''') \
                         % (self.property_id.name,
                            self.property_id.url1)
-
-            self.env['mail.mail'].create({
+            values = {
                 'body_html': body_html,
                 'state': 'outgoing',
-                'email_from': self.env.user.email_formatted or '',
                 'email_to': self.customer_id.email,
                 'subject': 'Property Location'
-            }).send()
+            }
+            if self.sender:
+                values['author_id'] = self.sender.id
+                values['email_from'] = self.email_from
+            self.env['mail.mail'].create(values).send()
 
         else:
             raise ValidationError(_("يرجي إضافة الايميل الخاص بالعميل"))

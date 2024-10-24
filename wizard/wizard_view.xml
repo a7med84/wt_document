@@ -8,7 +8,8 @@
             <field name="arch" type="xml">
                 <form string="Send Document To Customer">
                         <group>
-                            <field name="email_from"/>
+                            <field name="sender"/>
+                            <field name="email_from" attrs="{'invisible': [('sender','=', False)]}"/>
                             <field name="partner_id" widget="many2many_tags"/>
                             <field name="document_id" invisible="1" readonly="1"/>
                         </group>
