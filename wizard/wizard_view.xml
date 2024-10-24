@@ -35,9 +35,16 @@
             <field name="model">confirm.document</field>
             <field name="arch" type="xml">
                 <form string="Send Document To Customer">
-                    <h1>هل أنت متأكد من تصديق الخطاب</h1>
+                    <field name="to_draft" invisible="1"/>
+                    <h1 attrs="{'invisible': [('to_draft','=', True)]}">
+                    هل أنت متأكد من تصديق الخطاب
+                    </h1>
+                    <h1 attrs="{'invisible': [('to_draft','=', False)]}">
+                    هل أنت متأكد من تحويل الخطاب لمسودة
+                    </h1>
                     <footer>
-                        <button name="confirm_document" string="تأكيد" type="object" class="btn-primary"/>
+                        <button name="confirm_document" string="تأكيد" type="object" class="btn-primary" attrs="{'invisible': [('to_draft','=', True)]}"/>
+                        <button name="confirm_document" string="تحويل لمسودة" type="object" class="btn-primary" attrs="{'invisible': [('to_draft','=', False)]}"/>
                         <button string="إلغاء" class="btn-secondary" special="cancel"/>
                     </footer>
                 </form>

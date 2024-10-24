@@ -75,7 +75,7 @@
                             </div>
                         </div>
                         <div class="page Traditional-Arabic">
-                            <span dir="rtl" t-raw="o.body"/>
+                            <span t-raw="o.body"/>
                             <table dir="rtl" style="border:none;margin-top:80px">
                                 <tr>
                                     <th width="70%" style="text-align:right"></th>

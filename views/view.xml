@@ -11,6 +11,8 @@
                                 string="إرسال إلي العميل" states="confirm"/>
                         <button name="confirm_document" type="object" class="oe_highlight"
                                 string="تأكيد الخطاب" states="draft" groups="wt_documents.wt_documents_manager,wt_documents.document_confirm"/>
+                        <button name="unconfirm_document" type="object"
+                                string="تحويل لمسودة" states="confirm" groups="wt_documents.wt_documents_manager,wt_documents.document_confirm"/>
                         <field name="state" widget="statusbar" statusbar_visible="draft,confirm"/>
                     </header>
                     <sheet>

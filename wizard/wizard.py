@@ -9,16 +9,27 @@ class ConfirmDocument(models.TransientModel):
 
     document_id = fields.Many2one(comodel_name='wide.documents', string='الخطاب')
     document_confirmed_id = fields.Many2one(comodel_name='wide.documents.confirmed', string='الخطاب المعتمد')
+    to_draft = fields.Boolean()
 
     def confirm_document(self):
         if self.document_id:
-            self.document_id.state = 'confirm'
-            self.document_id.confirm_date = fields.Datetime.now()
-            self.document_id.confirm_user_id = self.env.user
+            if self.to_draft:
+                self.document_id.state = 'draft'
+                self.document_id.confirm_date = False
+                self.document_id.confirm_user_id = False
+            else:
+                self.document_id.state = 'confirm'
+                self.document_id.confirm_date = fields.Datetime.now()
+                self.document_id.confirm_user_id = self.env.user
         if self.document_confirmed_id:
-            self.document_confirmed_id.state = 'confirm'
-            self.document_confirmed_id.confirm_date = fields.Datetime.now()
-            self.document_confirmed_id.confirm_user_id = self.env.user
+            if self.to_draft:
+                self.document_confirmed_id.state = 'draft'
+                self.document_confirmed_id.confirm_date = False
+                self.document_confirmed_id.confirm_user_id = False
+            else:
+                self.document_confirmed_id.state = 'confirm'
+                self.document_confirmed_id.confirm_date = fields.Datetime.now()
+                self.document_confirmed_id.confirm_user_id = self.env.user
 
 
 class SendDocument(models.TransientModel):

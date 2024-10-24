@@ -165,6 +165,21 @@ class WideDocuments(models.Model):
             'context': {
                 'default_document_id': self.id,
                 'default_document_confirmed_id': False,
+                'default_to_draft': False,
+            },
+        }
+    
+
+    def unconfirm_document(self):
+        return {
+            'type': 'ir.actions.act_window',
+            'name': _('تحويل لمسودة'),
+            'view_mode': 'form',
+            'res_model': 'confirm.document',
+            'target': 'new',
+            'context': {
+                'default_document_id': self.id,
+                'default_to_draft': True,
             },
         }
 
