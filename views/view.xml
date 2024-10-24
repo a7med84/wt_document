@@ -95,7 +95,7 @@
             <field name="name">wide_documents_view_tree</field>
             <field name="model">wide.documents</field>
             <field name="arch" type="xml">
-                <tree string="wide_documents_tree">
+                <tree string="wide_documents_tree" default_order="create_date desc">
                     <field name="name"/>
                     <field name="date"/>
                     <field name="subject"/>

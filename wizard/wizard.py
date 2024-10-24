@@ -39,6 +39,18 @@ class SendDocument(models.TransientModel):
     partner_id = fields.Many2many(comodel_name='res.partner', string='العملاء')
     document_id = fields.Many2one(comodel_name='wide.documents', string='الخطاب')
     document_confirmed_id = fields.Many2one(comodel_name='wide.documents.confirmed', string='الخطاب المعتمد')
+    email_from = fields.Selection(
+        string='ايميل المرسل',
+        selection=[('no-reply@wtsaudi.com', 'no-reply@wtsaudi.com'),
+                   ('noreply@wtsaudi.com', 'noreply@wtsaudi.com'),
+                   ('hr@wtsaudi.com', 'شئون الموظفين'),
+                   ('info@wtsaudi.com', 'من نحن'),
+                   ('sales@wtsaudi.com', 'المبيعات'),
+                   ('accounting@wtsaudi.com', 'الحسابات'),
+                   ('support@wtsaudi.com', 'الدعم الفني')
+                   ],
+        default="no-reply@wtsaudi.com'", )
+
 
     def send_email_with_attachment(self):
         if self.document_id:
@@ -65,7 +77,7 @@ class SendDocument(models.TransientModel):
                     'subject': self.document_id.document_config_id.company_id.partner_id.name,
                     'author_id': self.env.company.partner_id.id,
                     'email_to': paetner.email,
-                    'email_from': 'no-reply@wtsaudi.com',
+                    'email_from': self.email_from,
                     'state': 'outgoing',
                     'body_html': self.document_id.email_message,
                     # 'recipient_ids': self.partner_id,
@@ -83,8 +95,8 @@ class SendDocument(models.TransientModel):
                 values = {
                     'subject': self.document_confirmed_id.document_config_id.company_id.partner_id.name,
                     'author_id': self.env.company.partner_id.id,
+                    'email_from': self.email_from,
                     'email_to': paetner.email,
-                    'email_from': 'no-reply@wtsaudi.com',
                     'state': 'outgoing',
                     'body_html': self.document_confirmed_id.email_message,
                     # 'recipient_ids': self.partner_id,
@@ -94,6 +106,7 @@ class SendDocument(models.TransientModel):
                 template.send()
                 self.document_id.received_ids = [(4, paetner.id)]
             return True
+
 
     def send_email(self):
         if self.partner_id.email:
